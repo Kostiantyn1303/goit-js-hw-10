@@ -16,8 +16,8 @@ const handleSearchCountry = event => {
 
   const formValue = event.target.value.trim();
   if (formValue === '') {
-    refs.countryListEl = '';
-    refs.countryInfoEL = '';
+    refs.countryListEl.innerHTML = '';
+    refs.countryInfoEL.innerHTML = '';
     return;
   }
 
@@ -48,14 +48,14 @@ const handleSearchCountry = event => {
       } else if (data.length < 10) {
         const markup = data
           .map(({ name, flags }) => {
-            return `<li><div class="wrapper__flag">
+            return `<li class = 'country__item'><div class="wrapper__flag">
       <img src="${flags.svg}" alt="flags" width="50">
-      <h2 class="country__title">${name.official}</h2>
+      <h2 class="country__title--small">${name.official}</h2>
     </div></li>`;
           })
           .join('');
         refs.countryListEl.innerHTML = markup;
-        refs.countryInfoEL = ' ';
+        refs.countryInfoEL.innerHTML = ' ';
       }
     })
     .catch(console.error());
